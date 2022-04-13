@@ -32,23 +32,11 @@ int main(void)
     while(1)
 	{
         // If SW2 is pressed, make a flashy light pattern
-        if(SW2 == 0)
+        if(SW4 == 0)
         {
-            LED3 = 1;
+            LATC = 0b00000000;
             __delay_ms(100);
-            LED4 = 1;
-            __delay_ms(100);
-            LED5 = 1;
-            __delay_ms(100);
-            LED6 = 1;
-            __delay_ms(100);
-            LED3 = 0;
-            __delay_ms(100);
-            LED4 = 0;
-            __delay_ms(100);
-            LED5 = 0;
-            __delay_ms(100);
-            LED6 = 0;
+            LATC = 0b11110000;
             __delay_ms(100);
         }
         
@@ -67,12 +55,18 @@ int main(void)
  * 1. How many times do the LEDs flash if SW2 is quickly pressed and released?
  *    Do the LEDs keep flashing when SW2 is held? Look at the program and
  *    explain why this happens when SW2 is held.
+           It only flashes once
+           Yes it keeps flashing when its held
+
  * 
  * 2. Explain the difference between the statements: LED3 = 0; and LED3 = 1;
+           "LED3 = 0;" Turns off and "LED3 = 1;" Turns on
  * 
  * 3. What voltage do you expect the microcontroller to output to LED D3 when
  *    the statement LED3 = 0; runs? What voltage do you expect the output to be
  *    when the statement LED3 = 1; runs?
+           0 voltage  
+           2 to 3 voltage
  * 
  *    You can confirm the output voltage with a voltmeter if you have access
  *    to one. If you tried that, did the voltage match your prediction?
@@ -96,6 +90,8 @@ int main(void)
  *    What happens when pushbutton SW3 is pressed? Identify at least one
  *    advantage and one disadvantage of controlling the LEDs using 'LATC' writes
  *    rather than through individual 'LEDn = x;' statements.
+           when pushbutton is pressed the lights blinks once
+
  * 
  * 6. Next, compare the operation of 'if' and 'while' structures to simulate
  *    momentary buttons. Replace the code you added in 5, above, with this code:
